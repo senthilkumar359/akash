@@ -1,0 +1,25 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home">Home</a>
+        <a mat-list-item routerLink="/about">About</a>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Products</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a mat-list-item routerLink="/products">All Products</a>
+            <a mat-list-item routerLink="/products/category1">Category 1</a>
+            <a mat-list-item routerLink="/products/category2">Category 2</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <!-- Add more menu items and expandable panels as needed -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Your main content goes here -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  

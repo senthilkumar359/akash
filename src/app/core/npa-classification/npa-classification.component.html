@@ -1,0 +1,55 @@
+<mat-table [dataSource]="dataSource" multiTemplateDataRows>
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="toggleRow(element)">
+      {{element.name}}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+  </ng-container>
+
+  <!-- Expanded Content Column -->
+  <ng-container matColumnDef="expandedDetail">
+    <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+      <div *ngIf="expandedElement === element">
+        <table mat-table [dataSource]="element.details" class="inner-table">
+          <!-- Property Column -->
+          <ng-container matColumnDef="property">
+            <mat-header-cell *matHeaderCellDef> Property </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> {{detail.property}} </mat-cell>
+          </ng-container>
+
+          <!-- Value Column -->
+          <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> {{detail.value}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="innerDisplayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let detail; columns: innerDisplayedColumns;"></mat-row>
+        </table>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let element; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let element; columns: ['expandedDetail']; when: isExpansionDetailRow"></mat-row>
+</mat-table>

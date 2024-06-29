@@ -1,0 +1,29 @@
+<div style="margin: 20px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Table Name</mat-label>
+        <mat-select formControlName="tableName">
+          <mat-option *ngFor="let table of items" [value]="table">
+            {{ table }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>ROLE</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let r of role" [value]="r">
+            {{ r }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>User ID</mat-label>
+        <input matInput formControlName="userId">
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+  
